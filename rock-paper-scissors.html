@@ -82,10 +82,30 @@
         for (let x= 0; x < 5; x++){
            gameResult = (playRound(playerSelection, computerSelection))
            console.log(gameResult)
-           console.log(checkWinner(gameResult))
            playerSelection = getPlayerSelection().toLowerCase()
            computerSelection = computerPlay().toLowerCase()
-    }
+           switch(checkWinner(gameResult)){
+               case "Win":
+                wins++
+                break;
+               case "Lose":
+                loses++
+                break;
+               case "Draw":
+                draws++
+                break;
+           }
+                      
+        }
+        if (wins > loses){
+               return "Congratiions you win " + wins +" to "+ loses +"."
+           }
+           else if (loses > wins){
+               return "The computer has bested you " + loses +" to "+ wins +"."
+           }
+           else {
+               return "The games have resulted in a draw"
+           }
     }
 
     let playerSelection = getPlayerSelection().toLowerCase()
