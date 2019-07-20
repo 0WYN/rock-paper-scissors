@@ -7,19 +7,26 @@
 </head>
 <body>
     <div class = "buttons">
-        <button id = "Rock" class = "button" data-sel = "Rock">Rock</button>
-        <button id = "Paper" class = "button" data-sel = "Paper">Paper</button>
-        <button id = "Scissors" class = "button" data-sel = "Scissors">Scissors</button>
+        <button class = "button" data-sel = "Rock">Rock</button>
+        <button class = "button" data-sel = "Paper">Paper</button>
+        <button class = "button" data-sel = "Scissors">Scissors</button>
     </div>
 
+
+
   <script>
+        let wins = 0;
+        let loses = 0;
+        let draws = 0;
+
+
        function getPlayerSelection(){
         window.addEventListener("click", function(e){ 
             return document.querySelector(`.button`).innerHTML
             })
        }
     
-    function computerPlay(){
+    function getComputerSelection(){
         let randomInt = Math.floor(Math.random() * 3)
         switch(randomInt){
             case 0:
@@ -36,24 +43,31 @@
 
     function playRound(playerSelection, computerSelection){
         if (playerSelection === "rock" && computerSelection === "paper"){
+            loses++;
             return "You Lose! Paper beats Rock";
         }
         else if (playerSelection === "rock" && computerSelection === "scissors"){
+            wins++;
             return "You Win! Rock beats Scissors";
         }
         else if (playerSelection === "paper" && computerSelection === "rock"){
+            wins++
             return "You Win! Paper beats Rock";
         }
         else if (playerSelection === "paper" && computerSelection === "scissors"){
+            loses++
             return "You Lose! Scissors beats Paper";
         }
         else if (playerSelection === "scissors" && computerSelection === "rock"){
+            loses++
             return "You Lose! Rock beats Scissors";
         }
         else if (playerSelection === "scissors" && computerSelection === "paper"){
+            wins++
             return "You Win! Scissors beats Paper";
         }
         else if (playerSelection === computerSelection){
+            draws++
             return "It's a draw!"
         }
         else {return "Something went wrong, make sure you entered a valid value"}
@@ -64,49 +78,13 @@
         
     }*/
 
-    function checkWinner(inquiry){
-        let findWin = inquiry.search("Win")
-        if (findWin < 0) {
-            let findLose = inquiry.search("Lose")
-            if (findLose < 0){
-                let findDraw = inquiry.search("draw")
-                if (findDraw < 0){
-                    return undefined
-                }
-                else if (findDraw > 0){
-                    return findDraw = "Draw"
-                }
-            }
-            else if (findLose > 0){
-                return findLose = "Lose"
-            }
-        }
-        else if (findWin > 0){
-            return findWin = "Win"
-        }
-
-    }
 
     function game(){
-        let wins = 0;
-        let loses = 0;
-        let draws = 0;
         while (wins < 5 || loses < 5){
            gameResult = (playRound(playerSelection, computerSelection))
            console.log(gameResult)
            playerSelection = getPlayerSelection()
-           computerSelection = computerPlay()
-           switch(checkWinner(gameResult)){
-               case "Win":
-                wins++
-                break;
-               case "Lose":
-                loses++
-                break;
-               case "Draw":
-                draws++
-                break;
-           }
+           computerSelection = getComputerSelection()
                       
         }
 
@@ -114,7 +92,7 @@
     }
 
     let playerSelection = getPlayerSelection()
-    let computerSelection = computerPlay()
+    let computerSelection = getComputerSelection()
     
     
     //console.log(playRound());
