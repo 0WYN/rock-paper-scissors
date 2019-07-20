@@ -7,14 +7,16 @@
 </head>
 <body>
     <div class = "buttons">
-        <button class = "button" id = "Rock">Rock</button>
-        <button class = "button" id = "Paper">Paper</button>
-        <button class = "button" id = "Scissors">Scissors</button>
+        <button id = "Rock" class = "button" data-sel = "Rock">Rock</button>
+        <button id = "Paper" class = "button" data-sel = "Paper">Paper</button>
+        <button id = "Scissors" class = "button" data-sel = "Scissors">Scissors</button>
     </div>
 
   <script>
        function getPlayerSelection(){
-        window.addEventListener("click", console.log("Button Clicked"))
+        window.addEventListener("click", function(e){ 
+            return document.querySelector(`.button`).innerHTML
+            })
        }
     
     function computerPlay(){
@@ -89,11 +91,11 @@
         let wins = 0;
         let loses = 0;
         let draws = 0;
-        for (let x= 0; x < 5; x++){
+        while (wins < 5 || loses < 5){
            gameResult = (playRound(playerSelection, computerSelection))
            console.log(gameResult)
-           playerSelection = getPlayerSelection().toLowerCase()
-           computerSelection = computerPlay().toLowerCase()
+           playerSelection = getPlayerSelection()
+           computerSelection = computerPlay()
            switch(checkWinner(gameResult)){
                case "Win":
                 wins++
@@ -107,22 +109,15 @@
            }
                       
         }
-        if (wins > loses){
-               return "Congratulations you win " + wins +" to "+ loses +"."
-           }
-           else if (loses > wins){
-               return "The computer has bested you " + loses +" to "+ wins +"."
-           }
-           else {
-               return "The games have resulted in a draw"
-           }
+
+        
     }
 
-    let playerSelection = getPlayerSelection().toLowerCase()
-    let computerSelection = computerPlay().toLowerCase()
+    let playerSelection = getPlayerSelection()
+    let computerSelection = computerPlay()
     
     
-    console.log(game())
+    //console.log(playRound());
 
 
 
