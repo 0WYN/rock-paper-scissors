@@ -6,11 +6,23 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class = "scoreBox">
+        <p id = "wins" class = "scores">Wins: </p>
+        <p id = "loses" class = "scores">Loses: </p>
+        <p id = "draws" class = "scores">Draws: </p>
+    </div>
+
+    <div>
+        <h1 id = winner class = winner>Click a button to start!</h1>  
+    </div>
+
     <div class = "buttons">
         <button class = "button">Rock</button>
         <button class = "button">Paper</button>
         <button class = "button">Scissors</button>
     </div>
+
+    
 
 
 
@@ -25,6 +37,7 @@ document.body.addEventListener("click", event => {
         }
     else{return}
     playRound(event.target.textContent);
+    updateScore();
     });
 
     
@@ -45,35 +58,42 @@ document.body.addEventListener("click", event => {
 
     function playRound(playerSelection){
         let computerSelection = getComputerSelection()
-        console.log(playerSelection)
-        console.log(computerSelection)
         
-
         if (playerSelection === "Rock" && computerSelection === "Paper"){
+            document.getElementById("winner").innerHTML = "You Lose! Paper beats Rock";
             loses++;
         }
         else if (playerSelection === "Rock" && computerSelection === "Scissors"){
+            document.getElementById("winner").innerHTML = "You Win! Rock beats Scissors";
             wins++;
         }
         else if (playerSelection === "Paper" && computerSelection === "Rock"){
+            document.getElementById("winner").innerHTML = "You Win! Paper beats Rock";
             wins++  
         }
         else if (playerSelection === "Paper" && computerSelection === "Scissors"){
+            document.getElementById("winner").innerHTML = "You Lose! Scissors beats Paper";
             loses++   
         }
         else if (playerSelection === "Scissors" && computerSelection === "Rock"){
+            document.getElementById("winner").innerHTML = "You Lose! Rock beats Scissors";
             loses++  
         }
         else if (playerSelection === "Scissors" && computerSelection === "Paper"){
+            document.getElementById("winner").innerHTML = "You Win! Scissors beats Paper";
             wins++   
         }
         else if (playerSelection === computerSelection){
+            document.getElementById("winner").innerHTML = "It's a draw!";
             draws++   
         }
+    }
+
+    function updateScore(){
+        document.getElementById("wins").innerHTML = `Wins: ${wins}`;
+        document.getElementById("loses").innerHTML = `Loses: ${loses}`;
+        document.getElementById("draws").innerHTML = `Draws: ${draws}`;
         
-        console.log("Wins:", wins)
-        console.log("Loses:", loses)
-        console.log("Draws:", draws)
     }
 
 
