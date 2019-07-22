@@ -41,11 +41,9 @@ document.body.addEventListener("click", event => {
     updateScore();
     if (wins > 4 ){
         document.getElementById("winner").innerHTML = "You've won! You got to 5 wins first!";
-        document.body.removeEventListener("click", event);
     }
     else if (loses > 4){
         document.getElementById("winner").innerHTML = "You've lost! The computer got to 5 wins first!";
-        document.body.removeEventListener("click", event);
     }
     });
 
