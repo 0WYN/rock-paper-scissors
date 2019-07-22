@@ -7,24 +7,26 @@
 </head>
 <body>
     <div class = "buttons">
-        <button class = "button" data-sel = "Rock">Rock</button>
-        <button class = "button" data-sel = "Paper">Paper</button>
-        <button class = "button" data-sel = "Scissors">Scissors</button>
+        <button class = "button">Rock</button>
+        <button class = "button">Paper</button>
+        <button class = "button">Scissors</button>
     </div>
 
 
 
   <script>
-        let wins = 0;
-        let loses = 0;
-        let draws = 0;
+let wins = 0;
+let loses = 0;
+let draws = 0;
+        
+document.body.addEventListener("click", event => {
+    if (event.target.nodeName == "BUTTON") {
+        console.log("Clicked", event.target.textContent);
+        }
+    else{return}
+    playRound(event.target.textContent);
+    });
 
-
-       function getPlayerSelection(){
-        window.addEventListener("click", function(e){ 
-            return document.querySelector(`.button`).innerHTML
-            })
-       }
     
     function getComputerSelection(){
         let randomInt = Math.floor(Math.random() * 3)
@@ -41,61 +43,41 @@
         }
     }
 
-    function playRound(playerSelection, computerSelection){
-        if (playerSelection === "rock" && computerSelection === "paper"){
+    function playRound(playerSelection){
+        let computerSelection = getComputerSelection()
+        console.log(playerSelection)
+        console.log(computerSelection)
+        
+
+        if (playerSelection === "Rock" && computerSelection === "Paper"){
             loses++;
-            return "You Lose! Paper beats Rock";
         }
-        else if (playerSelection === "rock" && computerSelection === "scissors"){
+        else if (playerSelection === "Rock" && computerSelection === "Scissors"){
             wins++;
-            return "You Win! Rock beats Scissors";
         }
-        else if (playerSelection === "paper" && computerSelection === "rock"){
-            wins++
-            return "You Win! Paper beats Rock";
+        else if (playerSelection === "Paper" && computerSelection === "Rock"){
+            wins++  
         }
-        else if (playerSelection === "paper" && computerSelection === "scissors"){
-            loses++
-            return "You Lose! Scissors beats Paper";
+        else if (playerSelection === "Paper" && computerSelection === "Scissors"){
+            loses++   
         }
-        else if (playerSelection === "scissors" && computerSelection === "rock"){
-            loses++
-            return "You Lose! Rock beats Scissors";
+        else if (playerSelection === "Scissors" && computerSelection === "Rock"){
+            loses++  
         }
-        else if (playerSelection === "scissors" && computerSelection === "paper"){
-            wins++
-            return "You Win! Scissors beats Paper";
+        else if (playerSelection === "Scissors" && computerSelection === "Paper"){
+            wins++   
         }
         else if (playerSelection === computerSelection){
-            draws++
-            return "It's a draw!"
+            draws++   
         }
-        else {return "Something went wrong, make sure you entered a valid value"}
+        
+        console.log("Wins:", wins)
+        console.log("Loses:", loses)
+        console.log("Draws:", draws)
     }
 
-    /*function getPlayerSelection(){
-        return prompt("Rock, Paper, or Scissors?")
-        
-    }*/
 
 
-    function game(){
-        while (wins < 5 || loses < 5){
-           gameResult = (playRound(playerSelection, computerSelection))
-           console.log(gameResult)
-           playerSelection = getPlayerSelection()
-           computerSelection = getComputerSelection()
-                      
-        }
-
-        
-    }
-
-    let playerSelection = getPlayerSelection()
-    let computerSelection = getComputerSelection()
-    
-    
-    //console.log(playRound());
 
 
 
