@@ -30,7 +30,8 @@
 let wins = 0;
 let loses = 0;
 let draws = 0;
-        
+
+
 document.body.addEventListener("click", event => {
     if (event.target.nodeName == "BUTTON") {
         console.log("Clicked", event.target.textContent);
@@ -38,6 +39,14 @@ document.body.addEventListener("click", event => {
     else{return}
     playRound(event.target.textContent);
     updateScore();
+    if (wins > 4 ){
+        document.getElementById("winner").innerHTML = "You've won! You got to 5 wins first!";
+        document.body.removeEventListener("click", event);
+    }
+    else if (loses > 4){
+        document.getElementById("winner").innerHTML = "You've lost! The computer got to 5 wins first!";
+        document.body.removeEventListener("click", event);
+    }
     });
 
     
