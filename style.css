@@ -1,6 +1,6 @@
 html {
     font-size: 10px;
-    background: url(https://66a5c94f881e00721b04-16146648069df66cb23bbc3aabf47a61.ssl.cf1.rackcdn.com/Adams-Still-Life-photography-rock-paper-scissors.jpg) bottom center;
+    background: url(rock-paper-scissors.png) bottom center;
     background-size: cover;
   }
   
@@ -14,7 +14,7 @@ html {
     display: flex;
     flex: 1;
     padding-top: 0;
-    padding-bottom: 40%;
+    padding-bottom: 25%;
     
     align-items: center;
     justify-content: center;
@@ -36,7 +36,7 @@ html {
   .scoreBox{
     display:flex;
     flex: 1;
-    padding-top: 40%;
+    padding-top: 25%;
     padding-bottom: 0;
     align-items: center;
     justify-content: center;
